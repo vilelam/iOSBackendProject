@@ -106,91 +106,89 @@
 //
 //}
 
-+ (void)authenticateWithUser:(NSString *)username Password:(NSString *)password TenantName:(NSString *)tenantName Type:(NSString *)type Error:(NSError **)error{
-    
-    //convert string to data
-    
-    NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
-    
-    NSMutableDictionary *authenticateDictionary = [[NSMutableDictionary alloc] init];
-    
-    [authenticateDictionary setObject:type forKey:@"type"];
-    [authenticateDictionary setObject:tenantName forKey:@"tenantname"];
-    [authenticateDictionary setObject:username forKey:@"username"];
-    [authenticateDictionary setObject:password forKey:@"password"];
-    
-    NSError *JSONSerializationError;
-    
-    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:authenticateDictionary options:NSJSONWritingPrettyPrinted error:&JSONSerializationError];
-    
-    NSURL *url = [NSURL URLWithString:@"http://ec2-54-235-108-25.compute-1.amazonaws.com:8080/moovt/login/authenticateUser"];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    [request setHTTPBody:bodyData];
-    
-    [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
-    
-    NSHTTPURLResponse *response;
-    
-    NSError *URLConnectionError;
-    
-    NSData *returnedJSONData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&URLConnectionError];
-    
-    if ([returnedJSONData length] > 0) {
-        int statusCode = response.statusCode;
-        if (statusCode < 400) {
-            NSError *JSONSerializationError;
-            NSDictionary *returnedData = [NSJSONSerialization JSONObjectWithData:returnedJSONData options:NSJSONWritingPrettyPrinted error:&JSONSerializationError];
-            NSString *code = [returnedData objectForKey:@"code"];
-//            NSString *msg = [returnedData objectForKey:@"msg"];
-            NSString *JSESSIONID = [returnedData objectForKey:@"JSESSIONID"];
-            
-            if ([code isEqualToString:@"SUCCESS"]) {
-                [self writeUserLoginInformationToPlistFile:username JSESSIONID:JSESSIONID];
-            }else if([code isEqualToString:@"ERROR"]){
-                [details setValue:@"O usuário ou o password informado não é válido" forKey:@"error"];
-                *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
-            }else{
-                [details setValue:@"Erro ao efetuar login tentar novamente" forKey:@"error"];
-                *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
-                
-            }
-            
-        }
-        else{
-            [details setValue:@"Erro durante o processo de login" forKey:@"error"];
-            *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
-        }
-    }
-    else{
-        [details setValue:[URLConnectionError localizedDescription] forKey:@"error"];
-        *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
-    }
-}
-
-+(void) writeUserLoginInformationToPlistFile: (NSString *) username JSESSIONID: (NSString *)JSESSIONID {
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"AppConfiguration.plist"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath: path])
-    {
-        NSError *filemanagerError;
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"AppConfiguration" ofType:@"plist"];
-        [fileManager copyItemAtPath:bundle toPath:path error:&filemanagerError];
-    }
-    
-    NSDictionary *appConfiguration = [[NSDictionary alloc] initWithObjectsAndKeys:JSESSIONID, @"JSESSIONID", username, @"USER",  nil];
-    
-    [appConfiguration writeToFile:path atomically:YES];
-
-}
-
-\
+//+ (void)authenticateWithUser:(NSString *)username Password:(NSString *)password TenantName:(NSString *)tenantName Type:(NSString *)type Error:(NSError **)error{
+//    
+//    //convert string to data
+//    
+//    NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
+//    
+//    NSMutableDictionary *authenticateDictionary = [[NSMutableDictionary alloc] init];
+//    
+//    [authenticateDictionary setObject:type forKey:@"type"];
+//    [authenticateDictionary setObject:tenantName forKey:@"tenantname"];
+//    [authenticateDictionary setObject:username forKey:@"username"];
+//    [authenticateDictionary setObject:password forKey:@"password"];
+//    
+//    NSError *JSONSerializationError;
+//    
+//    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:authenticateDictionary options:NSJSONWritingPrettyPrinted error:&JSONSerializationError];
+//    
+//    NSURL *url = [NSURL URLWithString:@"http://ec2-54-235-108-25.compute-1.amazonaws.com:8080/moovt/login/authenticateUser"];
+//    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    [request setHTTPBody:bodyData];
+//    
+//    [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
+//    
+//    NSHTTPURLResponse *response;
+//    
+//    NSError *URLConnectionError;
+//    
+//    NSData *returnedJSONData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&URLConnectionError];
+//    
+//    if ([returnedJSONData length] > 0) {
+//        int statusCode = response.statusCode;
+//        if (statusCode < 400) {
+//            NSError *JSONSerializationError;
+//            NSDictionary *returnedData = [NSJSONSerialization JSONObjectWithData:returnedJSONData options:NSJSONWritingPrettyPrinted error:&JSONSerializationError];
+//            NSString *code = [returnedData objectForKey:@"code"];
+////            NSString *msg = [returnedData objectForKey:@"msg"];
+//            NSString *JSESSIONID = [returnedData objectForKey:@"JSESSIONID"];
+//            
+//            if ([code isEqualToString:@"SUCCESS"]) {
+//                [self writeUserLoginInformationToPlistFile:username JSESSIONID:JSESSIONID];
+//            }else if([code isEqualToString:@"ERROR"]){
+//                [details setValue:@"O usuário ou o password informado não é válido" forKey:@"error"];
+//                *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
+//            }else{
+//                [details setValue:@"Erro ao efetuar login tentar novamente" forKey:@"error"];
+//                *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
+//                
+//            }
+//            
+//        }
+//        else{
+//            [details setValue:@"Erro durante o processo de login" forKey:@"error"];
+//            *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
+//        }
+//    }
+//    else{
+//        [details setValue:[URLConnectionError localizedDescription] forKey:@"error"];
+//        *error = [NSError errorWithDomain:@"authenticateUser" code:1 userInfo:details];
+//    }
+//}
+//
+//+(void) writeUserLoginInformationToPlistFile: (NSString *) username JSESSIONID: (NSString *)JSESSIONID {
+//    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"AppConfiguration.plist"];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if (![fileManager fileExistsAtPath: path])
+//    {
+//        NSError *filemanagerError;
+//        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"AppConfiguration" ofType:@"plist"];
+//        [fileManager copyItemAtPath:bundle toPath:path error:&filemanagerError];
+//    }
+//    
+//    NSDictionary *appConfiguration = [[NSDictionary alloc] initWithObjectsAndKeys:JSESSIONID, @"JSESSIONID", username, @"USER",  nil];
+//    
+//    [appConfiguration writeToFile:path atomically:YES];
+//
+//}
 
 
 

@@ -6,14 +6,22 @@
 //  Copyright (c) 2012 Marcos Vilela. All rights reserved.
 //
 
+
+
 #import "LogInViewController.h"
 
 @interface LogInViewController ()
+
+
 
 @end
 
 @implementation LogInViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.userName.text = @"";
+    self.password.text = @"";
+}
 
 - (void)viewDidLoad
 {
@@ -22,7 +30,7 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:gestureRecognizer];
-    
+   
 
 }
 
@@ -78,35 +86,38 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     
-    //logIn
+    //SignIn
     if (indexPath.section == 1 &&
         indexPath.row == 0) {
-    
-        [MEUser logInWithUsername:self.userName.text Password:self.password.text TenantName:@"naSavassi" Type:@"self" CompletionHandler:^(MEUser *meUser, NSError *error) {
-            if (error == nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UIViewController *firstViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstView"];
-                    [self presentViewController:firstViewController animated:YES completion:nil];
-                });
-            }else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[error userInfo] objectForKey:@"error"]  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                [alert show];
-                });
-            }
-        }];
-     
+        
+        MEUser *meUser;
+        meUser = [MEUser signInWithUsername:self.userName.text Password:self.password.text TenantName:@"WorldTaxi" Type:@"self"];
+        
+        if (meUser) {
+            UIViewController *firstViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstView"];
+            [self presentViewController:firstViewController animated:YES completion:nil];
+        }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
     }
     
-    //SignUp
+    //SignUp - Passager
     if (indexPath.section == 2 &&
         indexPath.row == 0) {
         
-        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
     }
+    
+    //SignUp - driver
+    if (indexPath.section == 2 &&
+        indexPath.row == 1) {
+        
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
+
     
     //reset password
     if (indexPath.section == 3 &&
@@ -121,11 +132,27 @@
         alert.message = @"Please enter the email address for your account.";
         [alert show];
         
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
+- (void)passengerSignUpViewControllerHasDone:(PassengerSignUpViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)driverSignUpViewControllerHasDone:(DriverSignUpViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"SignUpPassenger"]) {
+        PassengerSignUpViewController *destViewControler = segue.destinationViewController;
+        destViewControler.delegate = self;
+    }else if([segue.identifier isEqualToString:@"SignUpDriver"]){
+        DriverSignUpViewController *destViewControler = segue.destinationViewController;
+        destViewControler.delegate = self;
+    }
+}
 
 @end

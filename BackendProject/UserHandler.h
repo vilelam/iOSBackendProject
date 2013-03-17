@@ -7,20 +7,20 @@
 
 @interface UserHandler : NSObject <NSURLConnectionDelegate>
 
-+ (void) createNewUser: (NSString*)username
-              Password:(NSString *)password
-                 Email:(NSString *)email
-           Tenant: (NSString*) tenant;
-
-+ (void) authenticateWithUser: (NSString *)username
-             Password: (NSString *) password
-                   TenantName: (NSString *)tenantName
-                         Type: (NSString *) type
-                        Error: (NSError **) error;
-
-+ (NSString *) currentJSESSIONID;
-
-+ (NSString *) currentUSER;
+//+ (void) createNewUser: (NSString*)username
+//              Password:(NSString *)password
+//                 Email:(NSString *)email
+//           Tenant: (NSString*) tenant;
+//
+//+ (void) authenticateWithUser: (NSString *)username
+//             Password: (NSString *) password
+//                   TenantName: (NSString *)tenantName
+//                         Type: (NSString *) type
+//                        Error: (NSError **) error;
+//
+//+ (NSString *) currentJSESSIONID;
+//
+//+ (NSString *) currentUSER;
 
 
 

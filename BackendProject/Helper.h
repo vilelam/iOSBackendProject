@@ -11,5 +11,6 @@
 @interface Helper : NSObject
 
 +(NSError *)createErrorForMEUserClass:(NSString *) message;
++(void)showErrorMEUser: (NSString *) error;
 
 @end
