@@ -37,14 +37,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.username.text = @"";
-    self.password.text = @"";
-    self.email.text = @"";
-    self.firstName.text = @"";
-    self.lastName.text = @"";
-    self.phoneNumber.text = @"";
-    self.carType.text = @"";
-    self.servedMetro.text = @"";
+//    self.username.text = @"";
+//    self.password.text = @"";
+//    self.email.text = @"";
+//    self.firstName.text = @"";
+//    self.lastName.text = @"";
+//    self.phoneNumber.text = @"";
+//    self.carType.text = @"";
+//    self.servedMetro.text = @"";
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,9 +68,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.phoneNumber resignFirstResponder];
     [self.firstName resignFirstResponder];
     [self.lastName resignFirstResponder];
-    [self.carType resignFirstResponder];
+    [self.carDescription resignFirstResponder];
     [self.servedMetro resignFirstResponder];
 }
+
 - (void)hideKeyboard{
     [self.password resignFirstResponder];
     [self.username resignFirstResponder];
@@ -78,7 +79,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.phoneNumber resignFirstResponder];
     [self.firstName resignFirstResponder];
     [self.lastName resignFirstResponder];
-    [self.carType resignFirstResponder];
+    [self.carDescription resignFirstResponder];
     [self.servedMetro resignFirstResponder];
 }
 
@@ -151,8 +152,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //SignUp
-    if (indexPath.section == 2 &&
-        indexPath.row == 0) {
+    if ([self.tableView cellForRowAtIndexPath:indexPath] == self.signUpCell) {
         
         MEUser *meUser;
         NSString *activeStatus;
@@ -162,18 +162,52 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             activeStatus = @"DISABLED";
         }
         
-        meUser = [MEUser signUpWithDriverUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US" CarType:self.carType.text ServedMetro:self.servedMetro.text ActiveStatus:activeStatus];
+        meUser = [MEUser signUpWithDriverUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US" CarType:self.car.code ServedMetro:self.servedMetro.text ActiveStatus:activeStatus];
         
         if (meUser){
-            FirstViewController *fViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstView"];
-            [self presentViewController:fViewController animated:YES completion:nil];
+           
+            //loggin successful 
+            
         }
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
+    }else if ([self.tableView cellForRowAtIndexPath:indexPath] == self.carCell){
+        
+        CarTypeViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"CarTypeList"];
+        controller.delegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+        
+    }else if ([self.tableView cellForRowAtIndexPath:indexPath] == self.radiusCell){
+        
+        RadiusViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RadiusList"];
+        controller.delegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+        
     }
 }
 
+
+#pragma mark - implemented protocols
+
+- (void)carTypeViewControllerHasDone:(CarTypeViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)carTypeSelected:(Car *)car AtViewController:(CarTypeViewController *)viewController{
+    self.car = car;
+    self.carDescription.text = car.description;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void) radiusViewControllerHasDone:(RadiusViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)radiusSelected:(Radius *)radius AtViewController:(RadiusViewController *)viewController{
+    
+}
 
 @end
 

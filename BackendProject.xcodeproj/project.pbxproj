@@ -18,13 +18,23 @@
 		2F0BA72016C5AE59006D6F5E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0BA71F16C5AE59006D6F5E /* Default@2x.png */; };
 		2F0BA72216C5AE59006D6F5E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0BA72116C5AE59006D6F5E /* Default-568h@2x.png */; };
 		2F0BA72516C5AE59006D6F5E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F0BA72316C5AE59006D6F5E /* MainStoryboard.storyboard */; };
-		2F0BA73916C5BFE5006D6F5E /* UserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0BA73016C5B113006D6F5E /* UserHandler.m */; };
+		2F10C0B316F68AB80052CC35 /* CarTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F10C0B216F68AB80052CC35 /* CarTypeViewController.m */; };
+		2F10C0B616F69B9E0052CC35 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F10C0B516F69B9E0052CC35 /* Car.m */; };
+		2F11587A17026CF9007F37A7 /* RadiusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F11587917026CF9007F37A7 /* RadiusViewController.m */; };
+		2F11587D17026DA9007F37A7 /* Radius.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F11587C17026DA9007F37A7 /* Radius.m */; };
 		2F13D6EF16F41232009E3DCA /* PassengerSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F13D6EE16F40F8F009E3DCA /* PassengerSignUpViewController.m */; };
+		2F1641BE16FE01D100D40027 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1641BD16FE01D100D40027 /* DriverMenuViewController.m */; };
+		2F1641C116FE01FE00D40027 /* InitDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1641C016FE01FE00D40027 /* InitDriverViewController.m */; };
+		2F1641C416FE062100D40027 /* DriverInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1641C316FE062100D40027 /* DriverInfoViewController.m */; };
 		2F1F6FAC16D9297C009BB148 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1F6FAB16D9297C009BB148 /* Security.framework */; };
 		2F1F6FB316D93104009BB148 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F6FB216D93104009BB148 /* Helper.m */; };
 		2F1F6FC216D942F6009BB148 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F6FBD16D941C4009BB148 /* LogInViewController.m */; };
-		2F1F6FC516D9485F009BB148 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F6FC416D9485F009BB148 /* FirstViewController.m */; };
 		2F35DE6916D117B300F718E3 /* MEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F35DE6816D117B300F718E3 /* MEUser.m */; };
+		2F9D95B416F7F01E00E92A59 /* PassengerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D95B316F7F01E00E92A59 /* PassengerInfoViewController.m */; };
+		2FE4060A16FD10C400049D49 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6062316FD07B6006E67A8 /* ECSlidingViewController.m */; };
+		2FE4060B16FD117700049D49 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6062516FD07B6006E67A8 /* UIImage+ImageWithUIView.m */; };
+		2FF6062B16FD0821006E67A8 /* InitPassengerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6062A16FD0821006E67A8 /* InitPassengerController.m */; };
+		2FF6062E16FD09B6006E67A8 /* PassengerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6062D16FD09B6006E67A8 /* PassengerMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,19 +54,39 @@
 		2F0BA71F16C5AE59006D6F5E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2F0BA72116C5AE59006D6F5E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2F0BA72416C5AE59006D6F5E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2F0BA72F16C5B113006D6F5E /* UserHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHandler.h; sourceTree = "<group>"; };
-		2F0BA73016C5B113006D6F5E /* UserHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHandler.m; sourceTree = "<group>"; };
+		2F10C0B116F68AB80052CC35 /* CarTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTypeViewController.h; sourceTree = "<group>"; };
+		2F10C0B216F68AB80052CC35 /* CarTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypeViewController.m; sourceTree = "<group>"; };
+		2F10C0B416F69B9E0052CC35 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		2F10C0B516F69B9E0052CC35 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
+		2F11587817026CF9007F37A7 /* RadiusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadiusViewController.h; sourceTree = "<group>"; };
+		2F11587917026CF9007F37A7 /* RadiusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadiusViewController.m; sourceTree = "<group>"; };
+		2F11587B17026DA9007F37A7 /* Radius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radius.h; sourceTree = "<group>"; };
+		2F11587C17026DA9007F37A7 /* Radius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radius.m; sourceTree = "<group>"; };
 		2F13D6ED16F40F8F009E3DCA /* PassengerSignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassengerSignUpViewController.h; sourceTree = "<group>"; };
 		2F13D6EE16F40F8F009E3DCA /* PassengerSignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassengerSignUpViewController.m; sourceTree = "<group>"; };
+		2F1641BC16FE01D100D40027 /* DriverMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverMenuViewController.h; sourceTree = "<group>"; };
+		2F1641BD16FE01D100D40027 /* DriverMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverMenuViewController.m; sourceTree = "<group>"; };
+		2F1641BF16FE01FE00D40027 /* InitDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitDriverViewController.h; sourceTree = "<group>"; };
+		2F1641C016FE01FE00D40027 /* InitDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitDriverViewController.m; sourceTree = "<group>"; };
+		2F1641C216FE062100D40027 /* DriverInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverInfoViewController.h; sourceTree = "<group>"; };
+		2F1641C316FE062100D40027 /* DriverInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverInfoViewController.m; sourceTree = "<group>"; };
 		2F1F6FAB16D9297C009BB148 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2F1F6FB116D93104009BB148 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		2F1F6FB216D93104009BB148 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		2F1F6FBC16D941C4009BB148 /* LogInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		2F1F6FBD16D941C4009BB148 /* LogInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
-		2F1F6FC316D9485E009BB148 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		2F1F6FC416D9485F009BB148 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		2F35DE6716D117B300F718E3 /* MEUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEUser.h; sourceTree = "<group>"; };
 		2F35DE6816D117B300F718E3 /* MEUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEUser.m; sourceTree = "<group>"; };
+		2F9D95B216F7F01E00E92A59 /* PassengerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerInfoViewController.h; sourceTree = "<group>"; };
+		2F9D95B316F7F01E00E92A59 /* PassengerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerInfoViewController.m; sourceTree = "<group>"; };
+		2FF6062216FD07B6006E67A8 /* ECSlidingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		2FF6062316FD07B6006E67A8 /* ECSlidingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		2FF6062416FD07B6006E67A8 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
+		2FF6062516FD07B6006E67A8 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
+		2FF6062916FD0821006E67A8 /* InitPassengerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitPassengerViewController.h; sourceTree = "<group>"; };
+		2FF6062A16FD0821006E67A8 /* InitPassengerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitPassengerController.m; sourceTree = "<group>"; };
+		2FF6062C16FD09B6006E67A8 /* PassengerMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerMenuViewController.h; sourceTree = "<group>"; };
+		2FF6062D16FD09B6006E67A8 /* PassengerMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +107,7 @@
 		2F0BA6FC16C5AE59006D6F5E = {
 			isa = PBXGroup;
 			children = (
+				2FF6062116FD079B006E67A8 /* ECSlidingViewController */,
 				2F0BA71116C5AE59006D6F5E /* BackendProject */,
 				2F0BA70A16C5AE59006D6F5E /* Frameworks */,
 				2F0BA70816C5AE59006D6F5E /* Products */,
@@ -107,21 +138,12 @@
 			children = (
 				2F0BA71A16C5AE59006D6F5E /* AppDelegate.h */,
 				2F0BA71B16C5AE59006D6F5E /* AppDelegate.m */,
-				2F0BA72316C5AE59006D6F5E /* MainStoryboard.storyboard */,
-				2F35DE6716D117B300F718E3 /* MEUser.h */,
-				2F35DE6816D117B300F718E3 /* MEUser.m */,
 				2F1F6FB116D93104009BB148 /* Helper.h */,
 				2F1F6FB216D93104009BB148 /* Helper.m */,
-				2F1F6FBC16D941C4009BB148 /* LogInViewController.h */,
-				2F1F6FBD16D941C4009BB148 /* LogInViewController.m */,
-				2F13D6ED16F40F8F009E3DCA /* PassengerSignUpViewController.h */,
-				2F13D6EE16F40F8F009E3DCA /* PassengerSignUpViewController.m */,
-				2F01A25B16F606F100C53F76 /* DriverSignUpViewController.h */,
-				2F01A25C16F606F100C53F76 /* DriverSignUpViewController.m */,
-				2F1F6FC316D9485E009BB148 /* FirstViewController.h */,
-				2F1F6FC416D9485F009BB148 /* FirstViewController.m */,
-				2F0BA72F16C5B113006D6F5E /* UserHandler.h */,
-				2F0BA73016C5B113006D6F5E /* UserHandler.m */,
+				2F1641BB16FE011600D40027 /* Passenger */,
+				2F1641BA16FE00DF00D40027 /* Driver */,
+				2F1641B916FE00A700D40027 /* Authentication */,
+				2F0BA72316C5AE59006D6F5E /* MainStoryboard.storyboard */,
 				2F0BA71216C5AE59006D6F5E /* Supporting Files */,
 			);
 			path = BackendProject;
@@ -139,6 +161,66 @@
 				2F0BA72116C5AE59006D6F5E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F1641B916FE00A700D40027 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2F35DE6716D117B300F718E3 /* MEUser.h */,
+				2F35DE6816D117B300F718E3 /* MEUser.m */,
+				2F1F6FBC16D941C4009BB148 /* LogInViewController.h */,
+				2F1F6FBD16D941C4009BB148 /* LogInViewController.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		2F1641BA16FE00DF00D40027 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				2F10C0B416F69B9E0052CC35 /* Car.h */,
+				2F10C0B516F69B9E0052CC35 /* Car.m */,
+				2F11587B17026DA9007F37A7 /* Radius.h */,
+				2F11587C17026DA9007F37A7 /* Radius.m */,
+				2F01A25B16F606F100C53F76 /* DriverSignUpViewController.h */,
+				2F01A25C16F606F100C53F76 /* DriverSignUpViewController.m */,
+				2F10C0B116F68AB80052CC35 /* CarTypeViewController.h */,
+				2F10C0B216F68AB80052CC35 /* CarTypeViewController.m */,
+				2F11587817026CF9007F37A7 /* RadiusViewController.h */,
+				2F11587917026CF9007F37A7 /* RadiusViewController.m */,
+				2F1641BC16FE01D100D40027 /* DriverMenuViewController.h */,
+				2F1641BD16FE01D100D40027 /* DriverMenuViewController.m */,
+				2F1641BF16FE01FE00D40027 /* InitDriverViewController.h */,
+				2F1641C016FE01FE00D40027 /* InitDriverViewController.m */,
+				2F1641C216FE062100D40027 /* DriverInfoViewController.h */,
+				2F1641C316FE062100D40027 /* DriverInfoViewController.m */,
+			);
+			name = Driver;
+			sourceTree = "<group>";
+		};
+		2F1641BB16FE011600D40027 /* Passenger */ = {
+			isa = PBXGroup;
+			children = (
+				2F13D6ED16F40F8F009E3DCA /* PassengerSignUpViewController.h */,
+				2F13D6EE16F40F8F009E3DCA /* PassengerSignUpViewController.m */,
+				2FF6062916FD0821006E67A8 /* InitPassengerViewController.h */,
+				2FF6062A16FD0821006E67A8 /* InitPassengerController.m */,
+				2FF6062C16FD09B6006E67A8 /* PassengerMenuViewController.h */,
+				2FF6062D16FD09B6006E67A8 /* PassengerMenuViewController.m */,
+				2F9D95B216F7F01E00E92A59 /* PassengerInfoViewController.h */,
+				2F9D95B316F7F01E00E92A59 /* PassengerInfoViewController.m */,
+			);
+			name = Passenger;
+			sourceTree = "<group>";
+		};
+		2FF6062116FD079B006E67A8 /* ECSlidingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6062216FD07B6006E67A8 /* ECSlidingViewController.h */,
+				2FF6062316FD07B6006E67A8 /* ECSlidingViewController.m */,
+				2FF6062416FD07B6006E67A8 /* UIImage+ImageWithUIView.h */,
+				2FF6062516FD07B6006E67A8 /* UIImage+ImageWithUIView.m */,
+			);
+			name = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,15 +290,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE4060B16FD117700049D49 /* UIImage+ImageWithUIView.m in Sources */,
+				2FE4060A16FD10C400049D49 /* ECSlidingViewController.m in Sources */,
 				2F13D6EF16F41232009E3DCA /* PassengerSignUpViewController.m in Sources */,
 				2F1F6FC216D942F6009BB148 /* LogInViewController.m in Sources */,
-				2F0BA73916C5BFE5006D6F5E /* UserHandler.m in Sources */,
 				2F0BA71816C5AE59006D6F5E /* main.m in Sources */,
 				2F0BA71C16C5AE59006D6F5E /* AppDelegate.m in Sources */,
 				2F35DE6916D117B300F718E3 /* MEUser.m in Sources */,
 				2F1F6FB316D93104009BB148 /* Helper.m in Sources */,
-				2F1F6FC516D9485F009BB148 /* FirstViewController.m in Sources */,
 				2F01A25D16F606F100C53F76 /* DriverSignUpViewController.m in Sources */,
+				2F10C0B316F68AB80052CC35 /* CarTypeViewController.m in Sources */,
+				2F10C0B616F69B9E0052CC35 /* Car.m in Sources */,
+				2F9D95B416F7F01E00E92A59 /* PassengerInfoViewController.m in Sources */,
+				2FF6062B16FD0821006E67A8 /* InitPassengerController.m in Sources */,
+				2FF6062E16FD09B6006E67A8 /* PassengerMenuViewController.m in Sources */,
+				2F1641BE16FE01D100D40027 /* DriverMenuViewController.m in Sources */,
+				2F1641C116FE01FE00D40027 /* InitDriverViewController.m in Sources */,
+				2F1641C416FE062100D40027 /* DriverInfoViewController.m in Sources */,
+				2F11587A17026CF9007F37A7 /* RadiusViewController.m in Sources */,
+				2F11587D17026DA9007F37A7 /* Radius.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

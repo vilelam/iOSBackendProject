@@ -150,11 +150,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         MEUser *meUser;
         
-        meUser = [MEUser signUpWithUsername:self.username.text Password:self.password.text TenantName:@"naSavassi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US"];
+        meUser = [MEUser signUpWithUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US"];
         
         if (meUser){
-            FirstViewController *fViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstView"];
-            [self presentViewController:fViewController animated:YES completion:nil];
+            //Login Successfull
         }
      
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

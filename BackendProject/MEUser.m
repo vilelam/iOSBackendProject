@@ -6,8 +6,14 @@
 //  Copyright (c) 2013 Marcos Vilela. All rights reserved.
 //
 
+#define loggedUserDetails [NSURL URLWithString:@"http://ec2-54-235-108-25.compute-1.amazonaws.com:8080/moovt/user/retrieveLoggedUserDetails"]
+
 #define signInURL [NSURL URLWithString:@"http://ec2-54-235-108-25.compute-1.amazonaws.com:8080/moovt/login/authenticateUser"]
+
 #define signUpURL [NSURL URLWithString:@"http://ec2-54-235-108-25.compute-1.amazonaws.com:8080/moovt/user/createUser"]
+
+
+
 
 #import "MEUser.h"
 
@@ -26,12 +32,7 @@
         NSDictionary *MEUserplistfile = [[NSDictionary alloc] initWithContentsOfFile:path];
         meUser = [[MEUser alloc] init];
         meUser.jsessionid = [MEUserplistfile objectForKey:@"jsessionid"];
-        meUser.user = [MEUserplistfile objectForKey:@"user"];
-        meUser.type = [MEUserplistfile objectForKey:@"type"];
-        meUser.tenant = [MEUserplistfile objectForKey:@"tenant"];
-        meUser.email = [MEUserplistfile objectForKey:@"email"];
-    }
-    
+    }    
     return meUser;
 }
 
@@ -89,11 +90,8 @@
                     if ([code isEqualToString:@"SUCCESS"]) {
                         
                         meUser = [[MEUser alloc] init];
-                        meUser.user = username;
                         meUser.jsessionid = jsessionid;
-                        meUser.tenant = tenantName;
-                        meUser.type = type;
-                        
+
                         [meUser writeUserLoginInformationToPlistFile];
                         
                     }else if ([code isEqualToString:@"ERROR"]){
@@ -299,15 +297,116 @@
     
 }
 
+#pragma mark - loggedUser Details
+
++(void)retrieveLoggedUserDetails:(void (^)(MEUser *, NSError *))handler{
+        
+    NSError *error;
+    
+    NSMutableDictionary *retrieveLoggedUserDetails = [[NSMutableDictionary alloc] init];
+    
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:retrieveLoggedUserDetails options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSLog(@"%@", [[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
+    
+    if (error == nil) {
+        
+        NSURL *url = loggedUserDetails;
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        [request setHTTPBody:bodyData];
+        
+        [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
+        
+        NSString *jsessiond = [MEUser user].jsessionid;
+        
+        [request setValue:[NSString stringWithFormat:@"JSESSIONID=%@",jsessiond] forHTTPHeaderField:@"Cookie"];
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            MEUser *meUser;
+            
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            
+            if ([data length] > 0 && error == nil){
+                
+                NSLog(@"Http response status code: %i",httpResponse.statusCode);
+                
+                if (httpResponse.statusCode == 200) {
+                    
+                    //convert json data to NSDictionary
+                    NSDictionary *returnedDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                    
+                    if (error == nil) {
+                    
+                        meUser  = [[MEUser alloc] init];
+                        
+                        NSDictionary *user = [returnedDictionary objectForKey:@"user"];
+                        
+                        meUser.userId = [user objectForKey:@"id"];
+                        meUser.version = [user objectForKey:@"version"];
+                        meUser.username = [user objectForKey:@"username"];
+                        meUser.firstName = [user objectForKey:@"firstName"];
+                        meUser.lastName = [user objectForKey:@"lastName"];
+                        meUser.phone = [user objectForKey:@"phone"];
+                        meUser.email = [user objectForKey:@"email"];
+                        
+                        if ([user objectForKey:@"driver"]) {
+                            
+                            //to-do 
+                            //buscar informações do driver....
+                            
+
+                        }
+                        NSLog(@"Returned String: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    }
+                    
+                }
+                else if (httpResponse.statusCode == 403){
+                    
+                    // to-do
+                    ///Implementar código em caso de Unauthorized access
+                    ///
+                    
+                    error = [Helper createErrorForMEUserClass:@"Unauthorized access."];
+                    
+                    
+                }
+                else{
+                    error = [Helper createErrorForMEUserClass:@"Unexpected error."];
+                }
+            }else if ([data length] == 0 && error == nil){
+                //empty replay
+            }
+            else if (error != nil){
+                error = [Helper createErrorForMEUserClass:error.localizedDescription];
+            }
+            
+            handler(meUser,error);
+            
+        }];
+        
+    }
+
+}
+
 #pragma mark - PlistFile
 
 - (void) writeUserLoginInformationToPlistFile{
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MEUser.plist"];
     
     
-    NSDictionary *userDetails = [[NSDictionary alloc] initWithObjectsAndKeys:self.jsessionid, @"jsessionid", self.user, @"user", self.email, @"email", self.tenant, @"tenant", self.type, @"type", nil];
+    NSDictionary *userDetails = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 self.jsessionid, @"jsessionid",
+                                 nil];
     [userDetails writeToFile:path atomically:YES];
 }
 

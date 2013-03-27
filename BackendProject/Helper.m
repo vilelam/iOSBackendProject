@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Marcos Vilela. All rights reserved.
 //
 
+
+
 #import "Helper.h"
+
 
 @implementation Helper
 
@@ -21,6 +24,13 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
+
+
+
+
+
+
+
 
 
 @end

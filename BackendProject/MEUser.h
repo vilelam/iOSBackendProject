@@ -6,21 +6,25 @@
 //  Copyright (c) 2013 Marcos Vilela. All rights reserved.
 //
 
-//#import "ItemsHandler.h"
 #import "Helper.h"
+#import "Car.h"
 
 @interface MEUser : NSObject
     
-
-@property (strong, nonatomic) NSString *userType; //"driver" or "passenger"
-@property (strong, nonatomic) NSString *user;
+//Session info
 @property (strong, nonatomic) NSString *jsessionid;
-@property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *tenant;
-@property (strong, nonatomic) NSString *type;
+
+
+@property (strong, nonatomic) NSString *userType; //driver or passenger
+@property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *version;
+@property (strong, nonatomic) NSString *username;
+
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
-@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *phone;
+@property (strong, nonatomic) NSString *email;
+
 
 
 
@@ -54,5 +58,7 @@
                             CarType: (NSString *)carType
                         ServedMetro: (NSString *)servedMetro
                        ActiveStatus: (NSString *)activeStatus;
+
++(void)retrieveLoggedUserDetails: (void (^)(MEUser *meUser, NSError* error))handler;
 
 @end

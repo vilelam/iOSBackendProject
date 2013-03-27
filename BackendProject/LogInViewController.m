@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     //capture every time the tableView is touched and call method hideKeyboard
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -94,8 +95,10 @@
         meUser = [MEUser signInWithUsername:self.userName.text Password:self.password.text TenantName:@"WorldTaxi" Type:@"self"];
         
         if (meUser) {
-            UIViewController *firstViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstView"];
-            [self presentViewController:firstViewController animated:YES completion:nil];
+            
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Init"];
+            [self presentViewController:controller animated:YES completion:nil];
+            
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         

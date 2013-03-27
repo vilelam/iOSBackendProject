@@ -44,13 +44,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BackendProject/MEUser.m"
-         timestampString = "385226790.583442"
+         filePath = "BackendProject/CarTypeViewController.m"
+         timestampString = "386036179.190407"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "+signInWithUsername:Password:TenantName:Type:"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -58,50 +58,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BackendProject/MEUser.m"
-         timestampString = "385226790.583442"
+         timestampString = "385611142.5039"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
-         landmarkName = "+signUpWithUsername:Password:TenantName:Email:FirstName:LastName:PhoneNumber:Locale:"
+         startingLineNumber = "304"
+         endingLineNumber = "304"
+         landmarkName = "+retrieveLoggedUserDetails:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BackendProject/MEUser.m"
-         timestampString = "385226790.583442"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "+signInWithUsername:Password:TenantName:Type:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BackendProject/MEUser.m"
-         timestampString = "385226754.548257"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
-         landmarkName = "+signUpWithDriverUsername:Password:TenantName:Email:FirstName:LastName:PhoneNumber:Locale:CarType:ServedMetro:ActiveStatus:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BackendProject/DriverSignUpViewController.m"
-         timestampString = "385226763.472716"
+         timestampString = "386033405.97551"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
