@@ -7,8 +7,7 @@
 //
 
 #import "PassengerInfoViewController.h"
-#import "ECSlidingViewController.h"
-#import "PassengerMenuViewController.h"
+
 
 @interface PassengerInfoViewController ()
 
@@ -51,29 +50,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
     [self retrievePassengerInformation];
     
-    //prepare navigation bar button
-    
-    self.cancelLeftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
-    
-    self.menuLeftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
-                              
-    //prepare menu
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[PassengerMenuViewController class]]) {
-        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PassengerMenu"];
-    }
-    
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    
-    //add buttons to the navigation bar
-    
-    self.addedNavigationItem.rightBarButtonItem = self.editButtonItem;
-    self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;
+
    
 }
 
@@ -86,11 +63,26 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
+                
+                
+                self.meUser = meUser;
+                
                 self.email.text = meUser.email;
                 self.firstName.text = meUser.firstName;
                 self.lastName.text = meUser.lastName;
                 self.phone.text = meUser.phone;
                 self.meUser = meUser;
+                
+                //logged user info is displayed so prepare navigattion bar buttons
+                
+                //prepare navigation bar button
+                self.cancelLeftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+                
+                
+                //add buttons to the navigation bar
+                self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+                
             }else{
 
                 [Helper showErrorMEUserWithError:error];
@@ -117,10 +109,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                 [Helper showSuccessMEUser:successMessage];
             }
         });
-        
-        
-        
-        
     }];
     
 }
@@ -223,11 +211,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self setEditing:NO animated:YES];
 }
 
-- (void)revealMenu:(id)sender {
-    
-    [self.slidingViewController anchorTopViewTo:ECRight];
-
-}
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated{
     
@@ -240,7 +223,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         
         //add cancel button to the navigation bar
-        self.addedNavigationItem.leftBarButtonItem = self.cancelLeftBarButton;
+        self.navigationItem.leftBarButtonItem = self.cancelLeftBarButton;
         
         //to-do
         //add some look n feel into the edit mode screen
@@ -264,7 +247,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             [self updatePassengerInformation];
         }
         
-        self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;
+        self.navigationItem.leftBarButtonItem = self.menuLeftBarButton;
         cancelPressed = NO;
     }
 }

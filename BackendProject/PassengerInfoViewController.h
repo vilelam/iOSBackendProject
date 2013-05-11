@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
 @property (weak, nonatomic) IBOutlet UITextField *phone;
-@property (weak, nonatomic) IBOutlet UINavigationItem *addedNavigationItem;
+
 
 
 
@@ -27,6 +27,6 @@
 - (void)retrievePassengerInformation;
 - (void)updatePassengerInformation;
 - (void) cancelPressed;
-- (void)revealMenu:(id)sender;
+
 
 @end

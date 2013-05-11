@@ -30,6 +30,9 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:gestureRecognizer];
+    
+    self.userName.text = @"";
+    self.password.text = @"";
    
 
 }

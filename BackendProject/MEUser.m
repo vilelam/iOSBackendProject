@@ -211,8 +211,6 @@
     
     [driverExtraInformation setObject:activeStatus forKey:@"activeStatus"];
     
-    [driverExtraInformation setObject:radiusServed.code forKey:@"radiusServed"];
-    
     
     NSMutableDictionary *driverSignUpDictionary = [[NSMutableDictionary alloc] init];
     
@@ -378,13 +376,7 @@
                             //carType
                             NSMutableDictionary *carType = [driverExtraInformation objectForKey:@"carType"];
                             meUser.carType = [Helper createCarObject:carType];
-                            
-                    
-                            //radiusServed
-                            NSMutableDictionary *radiusServed = [driverExtraInformation objectForKey:@"radiusServed"];
-                            meUser.radiusServed = [Helper createRadiusObject: radiusServed];
-                            
-                        
+
                         }
                         else{
                             meUser.userType = @"passenger";
@@ -434,17 +426,26 @@
     [updateLoggedUser setObject:user.lastName forKey:@"lastName"];
     [updateLoggedUser setObject:user.phone forKey:@"phone"];
     [updateLoggedUser setObject:user.username forKey:@"username"];
+
 //    [updateLoggedUser setObject:user.version forKey:@"password"];
+
     [updateLoggedUser setObject:user.email forKey:@"email"];
+
 //    [updateLoggedUser setObject:user.version forKey:@"locale"];
     
     if ([user.userType isEqualToString:@"driver"]) {
      
-        //NSMutableDictionary *driverInfo = [[NSMutableDictionary alloc] init];
-        //to-do
-        //implementar o update das informações do driver
+        NSMutableDictionary *driverInfo = [[NSMutableDictionary alloc] init];
         
+        [driverInfo setObject:user.carType.code forKey:@"carType"];
         
+        NSMutableDictionary *servedLocation = [Helper createLocationDictionary:user.servedLocation.locationName politicalName:user.servedLocation.politicalName latitude:user.servedLocation.latitude longitude:user.servedLocation.longitude locationType:user.servedLocation.locationType];
+        
+        [driverInfo setObject:servedLocation forKey:@"servedLocation"];
+        
+        [driverInfo setObject:user.activeStatus.code forKey:@"activeStatus"];
+        
+        [updateLoggedUser setObject:driverInfo forKey:@"driver"];
     }
     
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:updateLoggedUser options:NSJSONWritingPrettyPrinted error:&error];

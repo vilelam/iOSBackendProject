@@ -11,7 +11,10 @@
 @interface ActiveStatus : NSObject
 
 
+
 @property (strong,nonatomic) NSString *code;
 @property (strong,nonatomic) NSString *description;
+
+
 
 @end

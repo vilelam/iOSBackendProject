@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Location.h"
 #import "Car.h"
-#import "Radius.h"
 #import "ActiveStatus.h"
 
 
@@ -37,8 +36,6 @@
 +(Car *) createCarObject:(NSMutableDictionary *) car;
 
 +(Location *) createLocationObject: (NSMutableDictionary *) location;
-
-+(Radius *) createRadiusObject:(NSMutableDictionary *) radius;
 
 +(ActiveStatus *) createActiveStatusObject:(NSMutableDictionary *) activeStatus;
 

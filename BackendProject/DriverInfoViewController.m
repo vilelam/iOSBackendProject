@@ -7,8 +7,8 @@
 //
 
 #import "DriverInfoViewController.h"
-#import "ECSlidingViewController.h"
-#import "DriverMenuViewController.h"
+
+
 
 @interface DriverInfoViewController ()
 
@@ -44,37 +44,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 {
     [super viewDidLoad];
     
+    //retrieve logged driver info
+    [self retrieveDriverInformation];
+    
+    
     //capture every time the tableView is touched and call method hideKeyboard
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:gestureRecognizer];
     
-    [self retrieveDriverInformation];
-    
-    //prepare navigation bar button
-    
-    self.cancelLeftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
-    
-    self.menuLeftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
-    
-    //prepare menu
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[DriverMenuViewController class]]) {
-        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DriverMenu"];
-    }
-
-    self.slidingViewController.panGesture.delegate = self;
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    
-    //add buttons to the navigation bar
-    
-    self.addedNavigationItem.rightBarButtonItem = self.editButtonItem;
-    self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;
     
 }
 
@@ -92,6 +70,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
+                
+                self.meUser = meUser;
+            
                 self.email.text = meUser.email;
                 self.firstName.text = meUser.firstName;
                 self.lastName.text = meUser.lastName;
@@ -106,8 +87,17 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                     self.activeStatus.on = FALSE;
                 }
                 
-                self.radiusServed.text = meUser.radiusServed.description;
                 self.carDescription.text = meUser.carType.description;
+ 
+                
+                //logged user info is displayed so prepare navigattion bar buttons
+                
+                //prepare navigation bar button
+                self.cancelLeftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+                
+                
+                //add buttons to the navigation bar
+                self.addedNavigationItem.rightBarButtonItem = self.editButtonItem;
                 
                 
             }else{
@@ -124,27 +114,41 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)updateDriverInformation{
     
-    self.meUser.email = self.email.text;
-    self.meUser.firstName = self.firstName.text;
-    self.meUser.lastName = self.lastName.text;
-    self.meUser.phone = self.phone.text;
+
+    if (self.email.text) {
+        self.meUser.email = self.email.text;
+    }
     
-    self.meUser.carType = self.car;
-    self.meUser.radiusServed = self.radius;
+    if (self.firstName.text) {
+        self.meUser.firstName = self.firstName.text;
+    }
     
+    if( self.lastName.text){
+        self.meUser.lastName = self.lastName.text;
+    }
+    
+    
+    if(self.phone.text){
+        self.meUser.phone = self.phone.text;
+    }
+    
+    if (self.car) {
+        self.meUser.carType = self.car;
+    }
+    
+    if (self.location) {
+        self.meUser.servedLocation = self.location;
+    }
     
     
     //to-do
-   // self.meUser.servedLocation = self.
-    
-    //
+    //self.meUser.servedLocation = self.location;
     
     
     if(self.activeStatus.on)
         self.meUser.activeStatus.code = @"ENABLED";
     else
         self.meUser.activeStatus.code = @"DISABLED";
-    
 
     
     [MEUser updateLoggedUserDetails:self.meUser completionHandler:^(NSError *error, NSString *successMessage) {
@@ -153,12 +157,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                 [Helper showSuccessMEUser:successMessage];
             }
         });
-        
-        
-        
-        
+
     }];
-    
 }
 
 
@@ -255,10 +255,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             CarTypeViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"CarTypeList"];
             controller.delegate = self;
             [self presentViewController:controller animated:YES completion:nil];
-        }else if ([tableView cellForRowAtIndexPath:indexPath] == self.radiusCell) {
-            RadiusViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RadiusList"];
-            controller.delegate = self;
-            [self presentViewController:controller animated:YES completion:nil];
         }else if ([tableView cellForRowAtIndexPath:indexPath] == self.servedLocationCell) {
             LocationViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Location"];
             controller.delegate = self;
@@ -269,7 +265,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
-
 #pragma mark - fired actions
 
 // cancel pressed fired method
@@ -278,11 +273,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self setEditing:NO animated:YES];
 }
 
-- (void)revealMenu:(id)sender {
-    
-    [self.slidingViewController anchorTopViewTo:ECRight];
-    
-}
+
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated{
     
@@ -297,7 +288,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         
         self.carCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        self.radiusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.servedLocationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         //add cancel button to the navigation bar
@@ -316,7 +306,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         [self.phone resignFirstResponder];
         
         self.carCell.accessoryType = UITableViewCellAccessoryNone;
-        self.radiusCell.accessoryType = UITableViewCellAccessoryNone;
         self.servedLocationCell.accessoryType = UITableViewCellAccessoryNone;
         
         
@@ -348,17 +337,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
-#pragma mark - Radius View Controller delegate methods
 
-- (void) radiusViewControllerHasDone:(RadiusViewController *)viewController{
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)radiusSelected:(Radius *)radius AtViewController:(RadiusViewController *)viewController{
-    self.radius = radius;
-    self.radiusServed.text = radius.description;
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - Location View Controller delegate methods
 

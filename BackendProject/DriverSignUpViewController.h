@@ -11,14 +11,13 @@
 #import <UIKit/UIKit.h>
 #import "MEUser.h"
 #import "CarTypeViewController.h"
-#import "RadiusViewController.h"
 #import "Car.h"
 #import "LocationViewController.h"
 #import "Location.h"
 
 @protocol DriverSignUpViewControllerDelegate;
 
-@interface DriverSignUpViewController : UITableViewController <UITextFieldDelegate,CarTypeViewControllerDelegate, RadiusViewControllerDelegate,LocationViewControllerDelegate>
+@interface DriverSignUpViewController : UITableViewController <UITextFieldDelegate,CarTypeViewControllerDelegate, LocationViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
@@ -29,12 +28,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *carDescription;
 @property (weak, nonatomic) IBOutlet UITextField *taxiStand;
 @property (weak, nonatomic) IBOutlet UISwitch *activeStatus;
-@property (weak, nonatomic) IBOutlet UITextField *radiusServed;
+
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *signUpCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *carCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *taxiStandCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *radiusCell;
+
 
 @property (strong, nonatomic) Location *taxiStandLocation;
 @property (strong,nonatomic) Car *car;

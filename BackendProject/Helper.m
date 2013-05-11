@@ -75,14 +75,7 @@
     return object;
 }
 
-#pragma mark Radius object
 
-+ (Radius *)createRadiusObject:(NSMutableDictionary *)radius{
-    Radius *object = [[Radius alloc]init];
-    object.code = [radius objectForKey:@"code"];
-    object.description = [radius objectForKey:@"description"];
-    return object;
-}
 
 
 

@@ -175,9 +175,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                     ActiveStatus:activeStatus
                                     RadiusServed:self.radius];
         
-        
-
-        
         if (!error){
            
             UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"InitDriver" ];
@@ -192,12 +189,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }else if ([self.tableView cellForRowAtIndexPath:indexPath] == self.carCell){
         
         CarTypeViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"CarTypeList"];
-        controller.delegate = self;
-        [self presentViewController:controller animated:YES completion:nil];
-        
-    }else if ([self.tableView cellForRowAtIndexPath:indexPath] == self.radiusCell){
-        
-        RadiusViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RadiusList"];
         controller.delegate = self;
         [self presentViewController:controller animated:YES completion:nil];
         
@@ -225,15 +216,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
-- (void) radiusViewControllerHasDone:(RadiusViewController *)viewController{
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)radiusSelected:(Radius *)radius AtViewController:(RadiusViewController *)viewController{
-    self.radius = radius;
-    self.radiusServed.text = radius.description;
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-}
+
+
 
 - (void)locationSelected:(Location *)location atViewControler:(LocationViewController *)viewController{
     self.taxiStandLocation = location;
