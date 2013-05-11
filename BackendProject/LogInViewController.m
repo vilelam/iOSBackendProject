@@ -7,7 +7,6 @@
 //
 
 
-
 #import "LogInViewController.h"
 
 @interface LogInViewController ()
@@ -91,14 +90,25 @@
     if (indexPath.section == 1 &&
         indexPath.row == 0) {
         
-        MEUser *meUser;
-        meUser = [MEUser signInWithUsername:self.userName.text Password:self.password.text TenantName:@"WorldTaxi" Type:@"self"];
+        NSError *error;
+        NSString *returnedUser;
         
-        if (meUser) {
+        error = [MEUser signInWithUsername:self.userName.text Password:self.password.text TenantName:@"WorldTaxi" Type:@"self" UserType:&returnedUser];
+        
+        if (!error) {
+        
+            if ([returnedUser isEqualToString:@"PASSENGER"]) {
+                UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"InitPassenger"];
+                [self presentViewController:controller animated:YES completion:nil];
+            }else{
+                UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"InitDriver"];
+                [self presentViewController:controller animated:YES completion:nil];
+                
+            }
+           
             
-            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Init"];
-            [self presentViewController:controller animated:YES completion:nil];
-            
+        }else{
+            [Helper showErrorMEUserWithError:error];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         

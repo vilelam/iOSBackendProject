@@ -1,4 +1,4 @@
-//
+    //
 //  PassengerInfoViewController.m
 //  BackendProject
 //
@@ -90,9 +90,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                 self.firstName.text = meUser.firstName;
                 self.lastName.text = meUser.lastName;
                 self.phone.text = meUser.phone;
+                self.meUser = meUser;
             }else{
 
-                [Helper showErrorMEUser:[[error userInfo] objectForKey:@"error"]];
+                [Helper showErrorMEUserWithError:error];
             }
             
         });
@@ -101,6 +102,28 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 
+#pragma mark - updateData
+
+- (void)updatePassengerInformation{
+    
+    self.meUser.email = self.email.text;
+    self.meUser.firstName = self.firstName.text;
+    self.meUser.lastName = self.lastName.text;
+    self.meUser.phone = self.phone.text;
+    
+    [MEUser updateLoggedUserDetails:self.meUser completionHandler:^(NSError *error, NSString *successMessage) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                [Helper showSuccessMEUser:successMessage];
+            }
+        });
+        
+        
+        
+        
+    }];
+    
+}
 
 
 #pragma mark - configure textField
@@ -238,6 +261,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             
             //to-do
             // Save the changes on the server
+            [self updatePassengerInformation];
         }
         
         self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;

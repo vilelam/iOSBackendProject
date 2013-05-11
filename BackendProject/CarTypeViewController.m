@@ -26,8 +26,7 @@
                 self.carTypeArray = carTypes;
                 [self.tableView reloadData];
             }else{
-                
-                [Helper showErrorMEUser:[[error userInfo] objectForKey:@"error"]];
+                [Helper showErrorMEUserWithError:error];
             }
             
         });

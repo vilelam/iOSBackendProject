@@ -7,14 +7,40 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Location.h"
+#import "Car.h"
+#import "Radius.h"
+#import "ActiveStatus.h"
 
+
+@class Car;
+@class Radius;
+@class Location;
 
 @interface Helper : NSObject
 
 +(NSError *)createErrorForMEUserClass:(NSString *) message;
-+(void)showErrorMEUser: (NSString *) error;
+
++(void)showErrorMEUserWithErrorString: (NSString *) errorMessage;
+
++(void)showErrorMEUserWithError: (NSError *) error;
+
++(void)showSuccessMEUser: (NSString *) message;
+
++(NSMutableDictionary *) createLocationDictionary: (NSString *) locationName
+                                    politicalName: (NSString *) politicalName
+                                         latitude: (double) latitude
+                                        longitude: (double) longitude
+                                     locationType: (NSString *) locationType;
 
 
++(Car *) createCarObject:(NSMutableDictionary *) car;
+
++(Location *) createLocationObject: (NSMutableDictionary *) location;
+
++(Radius *) createRadiusObject:(NSMutableDictionary *) radius;
+
++(ActiveStatus *) createActiveStatusObject:(NSMutableDictionary *) activeStatus;
 
 
 @end

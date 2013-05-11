@@ -22,19 +22,19 @@
     //to-do
     //implementar chamada do serviço que retornará as distancias em km ou miles
     
-//    [Car retrieverCarTypes:^(NSArray *carTypes, NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (!error) {
-//                self.carTypeArray = carTypes;
-//                [self.tableView reloadData];
-//            }else{
-//                
-//                [Helper showErrorMEUser:[[error userInfo] objectForKey:@"error"]];
-//            }
-//            
-//        });
-//        
-//    }];
+    [Radius retrieverRadiusServed:^(NSArray *radiusArray, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                self.radiusArray = radiusArray;
+                [self.tableView reloadData];
+            }else{
+                
+                [Helper showErrorMEUserWithError:error];
+            }
+            
+        });
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +68,7 @@
     
     // Configure the cell...
     
-//    cell.textLabel.text = [(Car*)[self.carTypeArray objectAtIndex:indexPath.row] description];
+    cell.textLabel.text = [(Radius*)[self.radiusArray objectAtIndex:indexPath.row] description];
     
     return cell;
 }
@@ -116,8 +116,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //Car *car = [self.carTypeArray objectAtIndex:indexPath.row];
-    //[[self delegate] carTypeSelected:car AtViewController:self];
+    Radius *radius = [self.radiusArray objectAtIndex:indexPath.row];
+    [[self delegate] radiusSelected:radius AtViewController:self];
 }
 
 @end

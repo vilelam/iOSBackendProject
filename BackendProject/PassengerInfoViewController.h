@@ -25,6 +25,7 @@
 
 
 - (void)retrievePassengerInformation;
+- (void)updatePassengerInformation;
 - (void) cancelPressed;
 - (void)revealMenu:(id)sender;
 

@@ -8,11 +8,13 @@
 
 #import "Helper.h"
 #import "Car.h"
+#import "CurrentSession.h"
+#import "Location.h"
+#import "Radius.h"
+#import "ActiveStatus.h"
+
 
 @interface MEUser : NSObject
-    
-//Session info
-@property (strong, nonatomic) NSString *jsessionid;
 
 
 @property (strong, nonatomic) NSString *userType; //driver or passenger
@@ -25,20 +27,23 @@
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSString *email;
 
+//driver information
+@property (strong, nonatomic) Location *servedLocation;
+@property (strong, nonatomic) ActiveStatus *activeStatus;
+@property (strong, nonatomic) Radius *radiusServed;
+@property (strong, nonatomic) Car *carType;
 
-
-
-+(MEUser *) user;
 
 //logIn methods
 
 
-+(MEUser *)signInWithUsername: (NSString *)username
-                     Password: (NSString *)password
-                   TenantName: (NSString *)tenantName
-                         Type: (NSString *)type;
++(NSError *)signInWithUsername: (NSString *)username
+                      Password: (NSString *)password
+                    TenantName: (NSString *)tenantName
+                          Type: (NSString *)type
+                      UserType: (NSString **) userType;
 
-+(MEUser *)signUpWithUsername: (NSString *)username
++(NSError *)signUpWithUsername: (NSString *)username
                      Password: (NSString *)password
                    TenantName: (NSString *)tenantName
                         Email: (NSString *)email
@@ -47,18 +52,22 @@
                   PhoneNumber: (NSString *)phoneNumber
                        Locale: (NSString *)locale;
 
-+(MEUser *)signUpWithDriverUsername: (NSString *)username
-                           Password: (NSString *)password
-                         TenantName: (NSString *)tenantName
-                              Email: (NSString *)email
-                          FirstName: (NSString *)firstName
-                           LastName: (NSString *)lastName
-                        PhoneNumber: (NSString *)phoneNumber
-                             Locale: (NSString *)locale
-                            CarType: (NSString *)carType
-                        ServedMetro: (NSString *)servedMetro
-                       ActiveStatus: (NSString *)activeStatus;
++(NSError *)signUpWithDriverUsername: (NSString *)username
+                            Password: (NSString *)password
+                          TenantName: (NSString *)tenantName
+                               Email: (NSString *)email
+                           FirstName: (NSString *)firstName
+                            LastName: (NSString *)lastName
+                         PhoneNumber: (NSString *)phoneNumber
+                              Locale: (NSString *)locale
+                             CarType: (Car *)carType
+                      ServedLocation: (Location *)location
+                        ActiveStatus: (NSString *)activeStatus
+                        RadiusServed: (Radius *)radiusServed;
 
 +(void)retrieveLoggedUserDetails: (void (^)(MEUser *meUser, NSError* error))handler;
+
++(void)updateLoggedUserDetails:(MEUser *)user completionHandler: (void (^)(NSError* error, NSString *))handler;
+
 
 @end

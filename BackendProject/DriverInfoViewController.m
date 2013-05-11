@@ -66,7 +66,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[DriverMenuViewController class]]) {
         self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DriverMenu"];
     }
-    
+
+    self.slidingViewController.panGesture.delegate = self;
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     
@@ -75,6 +76,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     self.addedNavigationItem.rightBarButtonItem = self.editButtonItem;
     self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;
     
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 
@@ -90,14 +96,69 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                 self.firstName.text = meUser.firstName;
                 self.lastName.text = meUser.lastName;
                 self.phone.text = meUser.phone;
+                
+                //driver
+                self.servedLocation.text = meUser.servedLocation.locationName;
+                
+                if ([meUser.activeStatus.code isEqualToString:@"ENABLED"]) {
+                    self.activeStatus.on = TRUE;
+                }else{
+                    self.activeStatus.on = FALSE;
+                }
+                
+                self.radiusServed.text = meUser.radiusServed.description;
+                self.carDescription.text = meUser.carType.description;
+                
+                
             }else{
                 
-                [Helper showErrorMEUser:[[error userInfo] objectForKey:@"error"]];
+                [Helper showErrorMEUserWithError:error];
             }
             
         });
         
     }];
+}
+
+#pragma mark - updateData
+
+- (void)updateDriverInformation{
+    
+    self.meUser.email = self.email.text;
+    self.meUser.firstName = self.firstName.text;
+    self.meUser.lastName = self.lastName.text;
+    self.meUser.phone = self.phone.text;
+    
+    self.meUser.carType = self.car;
+    self.meUser.radiusServed = self.radius;
+    
+    
+    
+    //to-do
+   // self.meUser.servedLocation = self.
+    
+    //
+    
+    
+    if(self.activeStatus.on)
+        self.meUser.activeStatus.code = @"ENABLED";
+    else
+        self.meUser.activeStatus.code = @"DISABLED";
+    
+
+    
+    [MEUser updateLoggedUserDetails:self.meUser completionHandler:^(NSError *error, NSString *successMessage) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                [Helper showSuccessMEUser:successMessage];
+            }
+        });
+        
+        
+        
+        
+    }];
+    
 }
 
 
@@ -198,6 +259,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             RadiusViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RadiusList"];
             controller.delegate = self;
             [self presentViewController:controller animated:YES completion:nil];
+        }else if ([tableView cellForRowAtIndexPath:indexPath] == self.servedLocationCell) {
+            LocationViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Location"];
+            controller.delegate = self;
+            [self presentViewController:controller animated:YES completion:nil];
         }
         
     }
@@ -233,7 +298,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         self.carCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.radiusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+        self.servedLocationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         //add cancel button to the navigation bar
         self.addedNavigationItem.leftBarButtonItem = self.cancelLeftBarButton;
@@ -252,11 +317,17 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         self.carCell.accessoryType = UITableViewCellAccessoryNone;
         self.radiusCell.accessoryType = UITableViewCellAccessoryNone;
+        self.servedLocationCell.accessoryType = UITableViewCellAccessoryNone;
+        
         
         if (!cancelPressed) {
             
+            
+            
             //to-do
             // Save the changes on the server
+            
+            [self updateDriverInformation];
         }
         
         self.addedNavigationItem.leftBarButtonItem = self.menuLeftBarButton;
@@ -284,7 +355,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 - (void)radiusSelected:(Radius *)radius AtViewController:(RadiusViewController *)viewController{
-    
+    self.radius = radius;
+    self.radiusServed.text = radius.description;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Location View Controller delegate methods
+
+- (void)locationSelected:(Location *)location atViewControler:(LocationViewController *)viewController{
+    self.location = location;
+    self.servedLocation.text = location.locationName;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationViewControllerCancelled:(LocationViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end

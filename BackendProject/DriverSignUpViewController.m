@@ -69,7 +69,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.firstName resignFirstResponder];
     [self.lastName resignFirstResponder];
     [self.carDescription resignFirstResponder];
-    [self.servedMetro resignFirstResponder];
+    [self.taxiStand resignFirstResponder];
 }
 
 - (void)hideKeyboard{
@@ -80,7 +80,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.firstName resignFirstResponder];
     [self.lastName resignFirstResponder];
     [self.carDescription resignFirstResponder];
-    [self.servedMetro resignFirstResponder];
+    [self.taxiStand resignFirstResponder];
 }
 
 
@@ -154,7 +154,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     //SignUp
     if ([self.tableView cellForRowAtIndexPath:indexPath] == self.signUpCell) {
         
-        MEUser *meUser;
+        NSError *error;
         NSString *activeStatus;
         if (self.activeStatus.on) {
             activeStatus = @"ENABLED";
@@ -162,12 +162,29 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             activeStatus = @"DISABLED";
         }
         
-        meUser = [MEUser signUpWithDriverUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US" CarType:self.car.code ServedMetro:self.servedMetro.text ActiveStatus:activeStatus];
+        error = [MEUser signUpWithDriverUsername:self.username.text
+                                        Password:self.password.text
+                                      TenantName:@"WorldTaxi"
+                                           Email:self.email.text
+                                       FirstName:self.firstName.text
+                                        LastName:self.lastName.text
+                                     PhoneNumber:self.phoneNumber.text
+                                          Locale:@"en_US"
+                                         CarType:self.car
+                                  ServedLocation:self.taxiStandLocation
+                                    ActiveStatus:activeStatus
+                                    RadiusServed:self.radius];
         
-        if (meUser){
+        
+
+        
+        if (!error){
            
-            //loggin successful 
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"InitDriver" ];
+            [self presentViewController:controller animated:YES completion:nil];
             
+        }else{
+            [Helper showErrorMEUserWithError:error];
         }
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -184,7 +201,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         controller.delegate = self;
         [self presentViewController:controller animated:YES completion:nil];
         
+    }else if ([self.tableView cellForRowAtIndexPath:indexPath] == self.taxiStandCell){
+        
+        LocationViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Location"];
+        controller.delegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+        
     }
+
 }
 
 
@@ -206,7 +230,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 - (void)radiusSelected:(Radius *)radius AtViewController:(RadiusViewController *)viewController{
-    
+    self.radius = radius;
+    self.radiusServed.text = radius.description;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationSelected:(Location *)location atViewControler:(LocationViewController *)viewController{
+    self.taxiStandLocation = location;
+    self.taxiStand.text = location.locationName;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationViewControllerCancelled:(LocationViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

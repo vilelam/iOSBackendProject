@@ -148,12 +148,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if (indexPath.section == 2 &&
         indexPath.row == 0) {
         
-        MEUser *meUser;
+        NSError *error;
         
-        meUser = [MEUser signUpWithUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US"];
+        error = [MEUser signUpWithUsername:self.username.text Password:self.password.text TenantName:@"WorldTaxi" Email:self.email.text FirstName:self.firstName.text LastName:self.lastName.text PhoneNumber:self.phoneNumber.text Locale:@"en_US"];
         
-        if (meUser){
-            //Login Successfull
+        if (!error){
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"InitPassenger"];
+            [self presentViewController:controller animated:YES completion:nil];
+        }else{
+            [Helper showErrorMEUserWithError:error];
         }
      
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
