@@ -25,8 +25,6 @@
 
 @property (nonatomic, assign) id<PassengerSignUpViewControllerDelegate>delegate;
 
-- (IBAction)cancelPressed:(id)sender;
-
 
 
 @end

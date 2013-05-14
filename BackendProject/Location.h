@@ -20,4 +20,8 @@
 
 + (void) searchLocations:(NSString*)enteredLocation completionHandler:(void (^)(NSError* error, NSArray *))handler;
 
+
+
+
+
 @end

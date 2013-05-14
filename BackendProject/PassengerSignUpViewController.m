@@ -77,9 +77,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 
-- (IBAction)cancelPressed:(id)sender {
-    [[self delegate] passengerSignUpViewControllerHasDone:self];
-}
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -137,6 +134,39 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
+    
+    
+    //validate email address
+    if ([textField isEqual:self.email]) {
+        if (![Helper validateEmail:textField.text]) {
+            [Helper showErrorMEUserWithErrorString:@"Invalid e-mail address. Please type it again."];
+        }
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    //username validation
+    if ([textField isEqual:self.username]) {
+        
+        //do not allow user to add whitespace to the text
+        if ([Helper checkIfThereAreWhiteSpace:string]) {
+            return NO;
+        }
+    }
+    
+    
+    //email validation
+    else if([textField isEqual:self.email]){
+        
+        //do not allow user to add whitespace to the text
+        if ([Helper checkIfThereAreWhiteSpace:string]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+
 }
 
 

@@ -98,10 +98,22 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)updatePassengerInformation{
     
-    self.meUser.email = self.email.text;
-    self.meUser.firstName = self.firstName.text;
-    self.meUser.lastName = self.lastName.text;
-    self.meUser.phone = self.phone.text;
+    
+    if (self.email.text) {
+        self.meUser.email = self.email.text;
+    }
+    
+    if (self.firstName.text) {
+        self.meUser.firstName = self.firstName.text;
+    }
+    
+    if (self.lastName.text) {
+        self.meUser.lastName = self.lastName.text;
+    }
+    
+    if (self.phone.text) {
+        self.meUser.phone = self.phone.text;
+    }
     
     [MEUser updateLoggedUserDetails:self.meUser completionHandler:^(NSError *error, NSString *successMessage) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -170,11 +182,32 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
+    
+    //validate email address
+    if ([textField isEqual:self.email]) {
+        if (![Helper validateEmail:textField.text]) {
+            [Helper showErrorMEUserWithErrorString:@"Invalid e-mail address. Please type it again."];
+        }
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    //email validation
+    if([textField isEqual:self.email]){
+        //do not allow user to add whitespace to the text
+        if ([Helper checkIfThereAreWhiteSpace:string]) {
+            return NO;
+        }
+    }
+    return YES;
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

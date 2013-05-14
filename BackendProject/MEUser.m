@@ -196,7 +196,7 @@
     return error;
 }
 
-+ (NSError *)signUpWithDriverUsername:(NSString *)username Password:(NSString *)password TenantName:(NSString *)tenantName Email:(NSString *)email FirstName:(NSString *)firstName LastName:(NSString *)lastName PhoneNumber:(NSString *)phoneNumber Locale:(NSString *)locale CarType:(Car *)carType ServedLocation:(Location *)location ActiveStatus:(NSString *)activeStatus RadiusServed:(Radius *)radiusServed{
++ (NSError *)signUpWithDriverUsername:(NSString *)username Password:(NSString *)password TenantName:(NSString *)tenantName Email:(NSString *)email FirstName:(NSString *)firstName LastName:(NSString *)lastName PhoneNumber:(NSString *)phoneNumber Locale:(NSString *)locale CarType:(Car *)carType ServedLocation:(Location *)location ActiveStatus:(NSString *)activeStatus{
     
     
     NSError *error;

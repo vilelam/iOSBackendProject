@@ -13,6 +13,10 @@
 
 @implementation Helper
 
+
+
+#pragma mark - Error MEUser Object
+
 +(NSError *)createErrorForMEUserClass:(NSString *) message{
     NSMutableDictionary *errorDetails = [[NSMutableDictionary alloc] init];
     [errorDetails setValue:message forKey:@"error"];
@@ -40,7 +44,9 @@
 }
 
 
-#pragma mark Location object
+
+
+#pragma mark - Location object
 
 + (NSMutableDictionary *)createLocationDictionary:(NSString *)locationName politicalName:(NSString *)politicalName latitude:(double)latitude longitude:(double)longitude locationType:(NSString *)locationType{
     
@@ -67,7 +73,7 @@
 }
 
 
-#pragma mark Car object
+#pragma mark - Car object
 + (Car *)createCarObject:(NSMutableDictionary *)car{
     Car *object = [[Car alloc]init];
     object.code = [car objectForKey:@"code"];
@@ -76,10 +82,7 @@
 }
 
 
-
-
-
-#pragma mark ActiveStatus object
+#pragma mark - ActiveStatus object
 
 + (ActiveStatus *)createActiveStatusObject:(NSMutableDictionary *)activeStatus{
     ActiveStatus *object = [[ActiveStatus alloc]init];
@@ -87,5 +90,25 @@
     object.description = [activeStatus objectForKey:@"description"];
     return object;
 }
+
+#pragma mark - Screen Validation
+
++ (BOOL) checkIfThereAreWhiteSpace: (NSString *)string{
+    NSRange whiteSpaceCharacterSet = [string rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (whiteSpaceCharacterSet.location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
+
++ (BOOL)validateEmail:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
+
 
 @end

@@ -141,10 +141,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     
     
-    //to-do
-    //self.meUser.servedLocation = self.location;
-    
-    
     if(self.activeStatus.on)
         self.meUser.activeStatus.code = @"ENABLED";
     else
@@ -218,7 +214,34 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
+    
+    
+    //validate email address
+    if ([textField isEqual:self.email]) {
+        if (![Helper validateEmail:textField.text]) {
+            [Helper showErrorMEUserWithErrorString:@"Invalid e-mail address. Please type it again."];
+        }
+    }
+    
 }
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    
+    //email validation
+    if([textField isEqual:self.email]){
+        
+        //do not allow user to add whitespace to the text
+        if ([Helper checkIfThereAreWhiteSpace:string]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
@@ -310,12 +333,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         
         if (!cancelPressed) {
-            
-            
-            
             //to-do
-            // Save the changes on the server
-            
             [self updateDriverInformation];
         }
         

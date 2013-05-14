@@ -37,11 +37,11 @@
 
 @property (strong, nonatomic) Location *taxiStandLocation;
 @property (strong,nonatomic) Car *car;
-@property (strong,nonatomic) Radius *radius; //radius served
+
 
 @property (nonatomic, assign) id<DriverSignUpViewControllerDelegate>delegate;
 
-- (IBAction)cancelPressed:(id)sender;
+
 
 
 @end

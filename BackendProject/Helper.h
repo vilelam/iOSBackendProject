@@ -40,4 +40,9 @@
 +(ActiveStatus *) createActiveStatusObject:(NSMutableDictionary *) activeStatus;
 
 
+
++ (BOOL)validateEmail:(NSString*)email;
+
++ (BOOL) checkIfThereAreWhiteSpace:(NSString *)string;
+
 @end

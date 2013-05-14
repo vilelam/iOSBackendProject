@@ -61,8 +61,7 @@
                               Locale: (NSString *)locale
                              CarType: (Car *)carType
                       ServedLocation: (Location *)location
-                        ActiveStatus: (NSString *)activeStatus
-                        RadiusServed: (Radius *)radiusServed;
+                        ActiveStatus: (NSString *)activeStatus;
 
 +(void)retrieveLoggedUserDetails: (void (^)(MEUser *meUser, NSError* error))handler;
 

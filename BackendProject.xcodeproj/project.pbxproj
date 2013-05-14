@@ -186,6 +186,7 @@
 				2FBD05EB1710CF4C00A295FE /* LocationViewController.h */,
 				2FBD05EC1710CF4C00A295FE /* LocationViewController.m */,
 				2F954CBC1711B33E00B0DF2A /* Location.h */,
+				2F954CBD1711B33E00B0DF2A /* Location.m */,
 				2F1641BB16FE011600D40027 /* Passenger */,
 				2F1641BA16FE00DF00D40027 /* Driver */,
 				2F1641B916FE00A700D40027 /* Authentication */,
@@ -234,7 +235,6 @@
 				2F10C0B216F68AB80052CC35 /* CarTypeViewController.m */,
 				2F1641C216FE062100D40027 /* DriverInfoViewController.h */,
 				2F1641C316FE062100D40027 /* DriverInfoViewController.m */,
-				2F954CBD1711B33E00B0DF2A /* Location.m */,
 			);
 			name = Driver;
 			sourceTree = "<group>";

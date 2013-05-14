@@ -23,7 +23,7 @@
         <scene sceneID="Xk0-88-dbF">
             <objects>
                 <tabBarController restorationIdentifier="InitDriver" storyboardIdentifier="InitDriver" definesPresentationContext="YES" id="IQ8-qw-lM9" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Qkd-ud-qB6">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -298,7 +298,7 @@
                                                         <constraint firstAttribute="width" constant="260" id="ssc-18-NkO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="Aur-2x-U0h" id="nrn-F6-M3h"/>
                                                     </connections>
@@ -380,7 +380,7 @@
                                                         <constraint firstAttribute="width" constant="260" id="nVM-v8-ALn"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="Aur-2x-U0h" id="Ka1-OR-Tos"/>
                                                     </connections>
@@ -452,41 +452,248 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGY-CN-8X6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1454" y="-1314"/>
+            <point key="canvasLocation" x="-2026" y="-1326"/>
         </scene>
-        <!--View Controller - Rides-->
-        <scene sceneID="kno-f5-ij4">
+        <!--Table View Controller - Rides-->
+        <scene sceneID="cNK-wB-3VW">
             <objects>
-                <viewController id="08t-TG-Q4D" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ago-97-sr5">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Rides" id="PE1-4n-esh"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3gy-0P-40a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Zfu-u1-9u7" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" id="QdV-cY-EV6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="76" id="bWa-qM-tWt">
+                                <rect key="frame" x="0.0" y="22" width="320" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="From" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-IJ-vFx">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="eUV-GI-c5r"/>
+                                                <constraint firstAttribute="width" constant="35" id="gVU-jB-hmw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.32156862749999998" green="0.40000000000000002" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ya4-Um-Cbk">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="shM-C0-g4C"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.32156862749999998" green="0.40000000000000002" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="To" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtB-VP-MHl">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="RTz-IV-GbC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.32156862749999998" green="0.40000000000000002" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rua Gabriel Santos 151, Serra, Belo Horizonte" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-uT-f3C">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="23" id="4Pv-NA-s2d"/>
+                                                <constraint firstAttribute="width" constant="193" id="cLH-U6-Xby"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tancredo Neves Aiport" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsB-OB-8R7">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="23" id="yhF-SB-90y"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Not Assigned" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VID-fs-JxJ">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="193" id="YdU-ul-hfz"/>
+                                                <constraint firstAttribute="height" constant="23" id="qrH-PQ-zAf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="13/05/13, 20:45" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pEj-Sr-Clt">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="DsZ-z5-G8n"/>
+                                                <constraint firstAttribute="width" constant="96" id="T60-Cy-4an"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="pEj-Sr-Clt" firstAttribute="leading" secondItem="gsB-OB-8R7" secondAttribute="leading" type="default" id="1mr-o6-gw5"/>
+                                    <constraint firstItem="ya4-Um-Cbk" firstAttribute="leading" secondItem="bWa-qM-tWt" secondAttribute="leading" type="default" id="8y6-A4-jHw"/>
+                                    <constraint firstItem="gsB-OB-8R7" firstAttribute="top" secondItem="bWa-qM-tWt" secondAttribute="top" constant="28" id="BNz-Mx-O4y"/>
+                                    <constraint firstItem="BtB-VP-MHl" firstAttribute="centerY" secondItem="bWa-qM-tWt" secondAttribute="centerY" type="default" id="Cd0-iU-xbI"/>
+                                    <constraint firstItem="bOZ-uT-f3C" firstAttribute="leading" secondItem="gsB-OB-8R7" secondAttribute="leading" type="default" id="Eze-7i-Ng0"/>
+                                    <constraint firstItem="BtB-VP-MHl" firstAttribute="baseline" secondItem="gsB-OB-8R7" secondAttribute="baseline" type="default" id="OMp-0Q-ViG"/>
+                                    <constraint firstItem="Jp9-IJ-vFx" firstAttribute="centerY" secondItem="bOZ-uT-f3C" secondAttribute="centerY" type="default" id="OwR-a6-b8u"/>
+                                    <constraint firstItem="VID-fs-JxJ" firstAttribute="centerY" secondItem="ya4-Um-Cbk" secondAttribute="centerY" type="default" id="UNA-Zd-pCG"/>
+                                    <constraint firstItem="ya4-Um-Cbk" firstAttribute="trailing" secondItem="BtB-VP-MHl" secondAttribute="trailing" type="default" id="Xpm-wZ-i1N"/>
+                                    <constraint firstItem="BtB-VP-MHl" firstAttribute="leading" secondItem="bWa-qM-tWt" secondAttribute="leading" type="default" id="j8a-mY-yH9"/>
+                                    <constraint firstAttribute="bottom" secondItem="pEj-Sr-Clt" secondAttribute="bottom" constant="6" id="jk9-4V-oo8"/>
+                                    <constraint firstItem="Jp9-IJ-vFx" firstAttribute="leading" secondItem="bWa-qM-tWt" secondAttribute="leading" type="default" id="juV-lV-Zca"/>
+                                    <constraint firstItem="Jp9-IJ-vFx" firstAttribute="trailing" secondItem="BtB-VP-MHl" secondAttribute="trailing" type="default" id="lIb-Z1-sFD"/>
+                                    <constraint firstItem="VID-fs-JxJ" firstAttribute="top" secondItem="bWa-qM-tWt" secondAttribute="top" constant="49" id="n5g-Jh-l7B"/>
+                                    <constraint firstItem="bOZ-uT-f3C" firstAttribute="leading" secondItem="bWa-qM-tWt" secondAttribute="leading" constant="38" id="p8L-Ny-T5w"/>
+                                    <constraint firstItem="bOZ-uT-f3C" firstAttribute="top" secondItem="bWa-qM-tWt" secondAttribute="top" constant="5" id="u9S-PO-OPh"/>
+                                    <constraint firstItem="VID-fs-JxJ" firstAttribute="leading" secondItem="bWa-qM-tWt" secondAttribute="leading" constant="168" id="wCz-eH-TMY"/>
+                                    <constraint firstItem="bOZ-uT-f3C" firstAttribute="trailing" secondItem="gsB-OB-8R7" secondAttribute="trailing" type="default" id="zTK-Ap-ri1"/>
+                                </constraints>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Rides" id="SYi-jA-B2k">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="a9p-9g-Vyk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8BK-4y-pml">
+                            <connections>
+                                <segue destination="eVM-kL-Inl" kind="modal" id="IHh-sK-lXB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LKK-59-xxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1460" y="-686"/>
+            <point key="canvasLocation" x="-1419" y="-478"/>
+        </scene>
+        <!--Table View Controller - Ride-->
+        <scene sceneID="QEU-2W-73G">
+            <objects>
+                <tableViewController id="R1Y-ig-DJh" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Y8O-OB-vSv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <datePicker key="tableFooterView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="Hin-6W-472">
+                            <rect key="frame" x="0.0" y="154" width="320" height="216"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <date key="date" timeIntervalSinceReferenceDate="390193047.51771599">
+                                <!--2013-05-14 02:57:27 +0000-->
+                            </date>
+                            <timeZone key="timeZone" name="America/Los_Angeles">
+                                <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                            </timeZone>
+                        </datePicker>
+                        <sections>
+                            <tableViewSection id="QmW-P9-Eoe">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oW8-K7-KBS">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dRs-Vk-XcG">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="KDe-VV-XRM">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ride" id="giC-7k-2bo">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0Xj-3L-4lt"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="6uN-NG-Y3u"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7u-wf-yse" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-437" y="-483"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rbc-Vs-mMq">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="eVM-kL-Inl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xYM-AK-T1G">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="R1Y-ig-DJh" kind="relationship" relationship="rootViewController" id="OXs-pC-uzR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fyc-bu-Mfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-971" y="-483"/>
+        </scene>
+        <!--Navigation Controller - Rides-->
+        <scene sceneID="Vas-h1-qj8">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="lAo-Ta-qFK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Rides" id="EGI-04-nbU"/>
+                    <navigationItem key="navigationItem" id="eCx-7W-gOQ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mas-cF-dRj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Zfu-u1-9u7" kind="relationship" relationship="rootViewController" id="DrZ-14-dNa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GVK-ML-hU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1990" y="-478"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QYa-16-LB0">
             <objects>
                 <tabBarController restorationIdentifier="InitPassenger" storyboardIdentifier="InitPassenger" definesPresentationContext="YES" id="Y8k-xK-0M0" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Yyi-Il-oxv">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="08t-TG-Q4D" kind="relationship" relationship="viewControllers" id="uXv-sb-Dpz"/>
                         <segue destination="gQ0-7u-JGW" kind="relationship" relationship="viewControllers" id="27h-gW-1gR"/>
+                        <segue destination="lAo-Ta-qFK" kind="relationship" relationship="viewControllers" id="ujj-n5-XsJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tP-9N-73I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1992" y="-966"/>
+            <point key="canvasLocation" x="-2564" y="-978"/>
         </scene>
         <!--Driver Sign Up View Controller - Driver-->
         <scene sceneID="mQU-I3-mdE">
@@ -564,7 +771,7 @@
                                                         <constraint firstAttribute="width" constant="260" id="YON-XI-K3v"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="g6E-j2-e5Y" id="fJi-23-d3O"/>
                                                     </connections>
@@ -646,7 +853,7 @@
                                                         <constraint firstAttribute="width" constant="260" id="QSh-fm-ahe"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="g6E-j2-e5Y" id="fYA-FN-vGU"/>
                                                     </connections>
@@ -1172,7 +1379,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7xr-Dn-NFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="-1314"/>
+            <point key="canvasLocation" x="-1365" y="-1326"/>
         </scene>
         <!--Navigation Controller - Info-->
         <scene sceneID="UCI-vx-zue">
@@ -1481,136 +1688,7 @@
             </objects>
             <point key="canvasLocation" x="-943" y="-2838"/>
         </scene>
-        <!--Radius View Controller-->
-        <scene sceneID="TCu-hw-cBg">
-            <objects>
-                <tableViewController restorationIdentifier="RadiusList" storyboardIdentifier="RadiusList" id="JPB-E3-8Qq" customClass="RadiusViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pW7-es-CBP">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="OUD-wa-iNf">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Radius" id="k7b-vj-qW7">
-                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="Cma-Wy-esq">
-                                        <connections>
-                                            <action selector="cancelPressed:" destination="JPB-E3-8Qq" id="NeY-l8-Jsl"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="XhY-Uf-zxW" style="IBUITableViewCellStyleDefault" id="vk7-tM-2zS">
-                                <rect key="frame" x="0.0" y="80" width="320" height="46"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XhY-Uf-zxW">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JPB-E3-8Qq" id="1HT-3K-12g"/>
-                            <outlet property="delegate" destination="JPB-E3-8Qq" id="yeM-o8-GaX"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8vi-Nt-Mlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2529" y="-3587"/>
-        </scene>
     </scenes>
-    <classes>
-        <class className="CarTypeViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarTypeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-            </relationships>
-        </class>
-        <class className="DriverInfoViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DriverInfoViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activeStatus" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="addedNavigationItem" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="carCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="carDescription" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="servedLocation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="servedLocationCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="DriverSignUpViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DriverSignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="outlet" name="activeStatus" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="carCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="carDescription" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signUpCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="taxiStand" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="taxiStandCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LocationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="outlet" name="mainTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LogInViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogInViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PassengerInfoViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PassengerInfoViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PassengerSignUpViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PassengerSignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
